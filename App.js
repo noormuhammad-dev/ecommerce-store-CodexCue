@@ -1,12 +1,15 @@
 import { NavigationContainer } from "@react-navigation/native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import StackScreens from "./app/screens/navigation/StackScreens";
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <StackScreens />
-    </NavigationContainer>
+    <GestureHandlerRootView>
+      <NavigationContainer>
+        <StackScreens />
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 };
 
