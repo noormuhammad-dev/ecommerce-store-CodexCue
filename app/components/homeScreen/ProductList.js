@@ -33,6 +33,7 @@ const ProductList = ({ data, header }) => {
         renderItem={({ item, index }) => {
           return <ProductListItem item={item} index={index} />;
         }}
+        contentContainerStyle={styles.contentContainerStyle}
         showsHorizontalScrollIndicator={false}
       />
     </View>
@@ -42,14 +43,15 @@ const ProductList = ({ data, header }) => {
 export default memo(ProductList);
 
 const styles = StyleSheet.create({
-  container:{
-    marginBottom:hp(1)
+  container: {
+    marginBottom: hp(2.5),
   },
   listHeaderContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: hp(2),
+    paddingHorizontal: wp(4),
   },
   listHeaderNameContainer: {
     flexDirection: "row",
@@ -67,5 +69,8 @@ const styles = StyleSheet.create({
   showAll: {
     fontSize: hp(1.6),
     color: COLORS.blue,
+  },
+  contentContainerStyle: {
+    paddingHorizontal: wp(4),
   },
 });

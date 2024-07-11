@@ -1,6 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import { memo } from "react";
-import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from "react-native-responsive-screen";
 import { COLORS } from "../../database/Database";
 
 const HomeBriefContent = () => {
@@ -19,7 +22,8 @@ export default memo(HomeBriefContent);
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: hp(2),
+    paddingVertical: hp(3),
+    paddingHorizontal: wp(4),
   },
   heading: {
     fontSize: hp(2.8),

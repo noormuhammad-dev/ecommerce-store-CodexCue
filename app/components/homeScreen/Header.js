@@ -1,6 +1,9 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { memo } from "react";
-import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from "react-native-responsive-screen";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { COLORS } from "../../database/Database";
@@ -35,6 +38,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingHorizontal: wp(4),
   },
   shoppingBag: {
     backgroundColor: COLORS.backgroundLight,

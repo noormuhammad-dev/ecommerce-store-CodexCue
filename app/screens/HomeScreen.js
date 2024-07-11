@@ -4,19 +4,25 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { Items } from "../database/Database";
 
 import Constants from "expo-constants";
 import HomeBriefContent from "../components/homeScreen/HomeBriefContent";
 import ProductList from "../components/homeScreen/ProductList";
-import { Items } from "../database/Database";
 
 const HomeScreen = () => {
+  const getDataWithCategory = (category) =>
+    Items.filter((filterItem) => filterItem.category == category);
+
   return (
     <SafeAreaView style={styles.container}>
       <Header />
       <HomeBriefContent />
-      <ProductList header={"Products"} data={Items}/>
-      <ProductList header={"Accessories"} data={Items}/>
+      <ProductList header={"Products"} data={getDataWithCategory("product")} />
+      <ProductList
+        header={"Accessories"}
+        data={getDataWithCategory("accessory")}
+      />
     </SafeAreaView>
   );
 };
@@ -27,6 +33,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Constants.statusBarHeight + hp(2),
-    paddingHorizontal: wp(4),
   },
 });
