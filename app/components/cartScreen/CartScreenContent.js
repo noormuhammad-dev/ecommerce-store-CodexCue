@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
     paddingHorizontal: wp(2),
     marginRight: wp(3),
+    fontSize:hp(1.8)
   },
   accountType: {
     fontWeight: "500",

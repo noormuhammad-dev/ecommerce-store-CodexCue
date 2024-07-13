@@ -39,8 +39,8 @@ const ProductDetailScreen = ({ route, navigation }) => {
           color={COLORS.backgroundDark}
         />
         <Carousel
-          width={400}
-          height={200}
+          width={wp(100)}
+          height={hp(35)}
           autoPlay={false}
           data={productData.productImageList}
           renderItem={({ item }) => {
