@@ -1,4 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { memo } from "react";
 import { COLORS } from "../../database/Database";
 import {
@@ -6,15 +12,19 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-const CartButton = ({ onPress, children }) => {
+const CartButton = ({ onPress, children, disable }) => {
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={onPress}
       activeOpacity={0.7}
-      style={styles.container}
+      style={({ pressed }) => [
+        !disable && pressed && { opacity: 0.7 },
+        styles.container,
+        disable && styles.disableContainer,
+      ]}
     >
       <Text style={styles.addToCart}>{children}</Text>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
@@ -28,7 +38,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
-    bottom: hp(4),
+    bottom: hp(2),
     width: wp(85),
     alignSelf: "center",
   },
@@ -37,5 +47,8 @@ const styles = StyleSheet.create({
     fontSize: hp(1.8),
     fontWeight: "500",
     letterSpacing: 1.2,
+  },
+  disableContainer: {
+    backgroundColor: COLORS.backgroundDark,
   },
 });

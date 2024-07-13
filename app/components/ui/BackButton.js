@@ -28,11 +28,13 @@ export default memo(BackButton);
 const styles = StyleSheet.create({
   container: {
     marginTop: Constants.statusBarHeight + hp(2),
-    paddingHorizontal: wp(4),
+    paddingLeft: wp(4),
+    alignSelf: "flex-start",
+    position: "absolute",
+    zIndex: 10,
   },
   backButton: {
     borderRadius: 12,
     padding: hp(1.2),
-    alignSelf: "flex-start",
   },
 });

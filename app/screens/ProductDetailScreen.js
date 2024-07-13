@@ -1,23 +1,35 @@
 import { Image, StyleSheet, View } from "react-native";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { COLORS, Items } from "../database/Database";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../store/slice/cartSlice";
 
+import Constants from "expo-constants";
 import Carousel from "react-native-reanimated-carousel";
 import BackButton from "../components/ui/BackButton";
 import ProductContent from "../components/productDetail/ProductContent";
 import CartButton from "../components/productDetail/CartButton";
+import Toast from "react-native-toast-message";
 
-const ProductDetailScreen = ({ route }) => {
+const ProductDetailScreen = ({ route, navigation }) => {
   const { id } = route.params;
+  const dispatch = useDispatch();
 
   const productData = useMemo(
     () => Items.filter((filterItem) => filterItem.id == id)[0],
     [id]
   );
+
+  const addToCartHandler = useCallback(() => {
+    if (!productData.isAvailable) return;
+    dispatch(cartActions.addToCart(id));
+    Toast.show({ text1: "Item Added Successfully to cart" });
+    navigation.goBack();
+  }, [id]);
 
   return (
     <View style={styles.container}>
@@ -38,7 +50,9 @@ const ProductDetailScreen = ({ route }) => {
         />
       </View>
       <ProductContent productData={productData} />
-      <CartButton>ADD TO CART</CartButton>
+      <CartButton disable={!productData.isAvailable} onPress={addToCartHandler}>
+        {productData.isAvailable ? "ADD TO CART" : "Not Available"}
+      </CartButton>
     </View>
   );
 };
@@ -54,6 +68,7 @@ const styles = StyleSheet.create({
     height: hp(38),
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
+    paddingTop: Constants.statusBarHeight + hp(7),
   },
   img: {
     height: wp(50),
